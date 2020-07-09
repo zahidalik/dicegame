@@ -9,8 +9,7 @@ GAME RULES:
 
 */
 
-
-var scores, roundScore, activePlayer, previousDiceRoll, gamePlaying;
+var scores, roundScore, activePlayer, previousDiceRoll, gamePlaying, targetScore;
 init();
 
 document.querySelector('.btn-roll').addEventListener('click', function() {
@@ -46,7 +45,7 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
         // Update the UI
         document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
         // Check if the player wins the game
-        if (scores[activePlayer] >= 200) {
+        if (scores[activePlayer] >= targetScore) {
             document.querySelector('#name-' + activePlayer).textContent = 'Winner!';
             document.querySelector('.dice').style.display = 'none';
             document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
@@ -90,8 +89,9 @@ function init() {
     document.getElementById('score-1').textContent = '0';
     document.getElementById('current-0').textContent = '0';
     document.getElementById('current-1').textContent = '0';
-    document.getElementById('name-0').textContent = 'Player 1';
-    document.getElementById('name-1').textContent = 'Player 2';
+    document.getElementById('name-0').textContent = prompt('Player 1 name', 'Player 1');
+    document.getElementById('name-1').textContent = prompt('Player 2 name', 'Player 2');
+    targetScore = prompt('Target Score', 100);
 
     document.querySelector('.player-0-panel').classList.remove('winner');
     document.querySelector('.player-1-panel').classList.remove('winner');
